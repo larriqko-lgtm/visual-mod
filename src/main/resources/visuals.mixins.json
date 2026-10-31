@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.example.visuals.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "EntityMixin",
+    "GuiMixin",
+    "OptionsMixin",
+    "OptionInstanceAccessor"
+  ],
+  "injectors": { "defaultRequire": 0 }
+}

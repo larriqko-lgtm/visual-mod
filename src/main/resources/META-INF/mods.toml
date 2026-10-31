@@ -1,0 +1,20 @@
+# Скопируйте нужные блоки в mods.toml (или template) из официального MDK.
+modLoader="javafml"
+loaderVersion="[61,)"
+license="MIT"
+
+[[mods]]
+modId="visuals"
+version="1.0.0"
+displayName="Visuals"
+description='''Клиентские визуальные эффекты: fullbright, зум, HUD, прицел, частицы, подсветка.'''
+
+[[mixins]]
+config="visuals.mixins.json"
+
+[[dependencies.visuals]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.21.11]"
+ordering="NONE"
+side="CLIENT"
