@@ -1,0 +1,41 @@
+name: Build Visuals (Forge 1.21.11)
+
+on:
+  workflow_dispatch:
+    inputs:
+      forge_version:
+        description: "Версия Forge"
+        default: "1.21.11-61.0.3"
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Build
+        shell: bash
+        env:
+          FORGE_VERSION: ${{ github.event.inputs.forge_version || '1.21.11-61.0.3' }}
+        run: bash build.sh 2>&1 | tee build.log
+
+      - name: Upload jar
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Visuals-jar
+          path: out/*.jar
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
